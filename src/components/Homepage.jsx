@@ -1,8 +1,7 @@
-
 import millify from "millify";
 import {Typography, Row, Col, Statistic} from 'antd';
 import {Link} from "react-router-dom";
-
+import 'antd/dist/antd.min.css'
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Cryptocurrencies from "./Cryptocurrencies";
 import News from "./News";
@@ -11,7 +10,7 @@ const {Title} = Typography;
 
 function Homepage(){
 
-    const {data, isFetching} = useGetCryptosQuery();
+    const {data, isFetching} = useGetCryptosQuery(10);
     const globalStats = data?.data?.stats;
        
     if(isFetching) return 'Loading...';
@@ -29,11 +28,11 @@ function Homepage(){
             <div className="home-heading-container">
                 <Title level={2} className="home-title">Top 10 Cryptocurrencies</Title>
                 <Title level={3} className="show-more"><Link to="/cryptocurrencies">Show More</Link></Title>
-            </div>
-            <Cryptocurrencies simplified/>
+            </div> 
+            <Cryptocurrencies simplified={true}/>
             <div className="home-heading-container">
                 <Title level={2} className="home-title">Latest Crypto News</Title>
-                <Title level={3} className="show-more"><Link to="/cryptocurrencies">Show More</Link></Title>
+                <Title level={3} className="show-more"><Link to="/news">Show More</Link></Title>
             </div>
             <News simplified/>
         </>
