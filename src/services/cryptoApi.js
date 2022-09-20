@@ -20,7 +20,9 @@ export const cryptoApi = createApi({
             query:(coinId)=> createRequest(`coin/${coinId}`),
         }),
         getCryptoHistory:builder.query({
-            query:({referenceCurrencyUuid, timePeriod}) => createRequest(`/coin/${referenceCurrencyUuid}/history?referenceCurrencyUuid=${referenceCurrencyUuid}&timePeriod=${timePeriod}`),
+            query:({referenceCurrencyUuid, timePeriod}) => createRequest(`/coin/Qwsogvtv82FCd/history?referenceCurrencyUuid=${referenceCurrencyUuid}&timePeriod=${timePeriod}`),
+
+            // fetch('https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd/history?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h',
         }),      
     })
 })
