@@ -16,12 +16,12 @@ export const cryptoApi = createApi({
         getCryptos: builder.query({
             query:(limit)=> createRequest(`/coins?limit=${limit}`),
         }),
-        getCryptoDetails: builder.query({
+        getCryptoDetails:builder.query({
             query:(coinId)=> createRequest(`coin/${coinId}`),
         }),
-        getCryptoHistory: builder.query({
-            query:({referenceCurrencyUuid, timePeriod})=> createRequest(`coin/${referenceCurrencyUuid}/history/${timePeriod}`),
-        }),
+        getCryptoHistory:builder.query({
+            query:({referenceCurrencyUuid, timePeriod}) => createRequest(`/coin/${referenceCurrencyUuid}/history?referenceCurrencyUuid=${referenceCurrencyUuid}&timePeriod=${timePeriod}`),
+        }),      
     })
 })
 
