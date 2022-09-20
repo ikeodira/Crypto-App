@@ -12,19 +12,19 @@ const {Option} = Select;
 
 function CryptoDetails(){
     const {coinId} = useParams();
-    const [timePeriod, setTimePeriod] = useState('7d');
+    const [timePeriod, setTimePeriod] = useState("3m");    
     const {data, isFetching} = useGetCryptoDetailsQuery(coinId);
-    const {data:coinHistory} = useGetCryptoHistoryQuery({coinId, timePeriod});
+    let referenceCurrencyUuid = coinId;
+    
+    const {data:coinHistory} = useGetCryptoHistoryQuery({referenceCurrencyUuid, timePeriod});
 
+    
     const cryptoDetails = data?.data?.coin;
-    console.log(coinHistory);
-
-
+    
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
-    if(isFetching){
-        return <h1> Loading </h1>
-    }
+    if(isFetching) return "Loading...";
+
 
     const stats = [
       { title: 'Price to USD', value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`, icon: <DollarCircleOutlined /> },
@@ -40,9 +40,7 @@ function CryptoDetails(){
       { title: 'Aprroved Supply', value: cryptoDetails?.supply?.confirmed ? <CheckOutlined /> : <StopOutlined />, icon: <ExclamationCircleOutlined /> },
       { title: 'Total Supply', value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}`, icon: <ExclamationCircleOutlined /> },
       { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
-    ];
-
-    
+    ];    
   
     return (
         <Col className="coin-detail-container">
